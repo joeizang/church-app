@@ -13,7 +13,7 @@ export default function SermonsPage() {
   const sermons = getAllSermons()
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-church-purple/20 via-gray-50 to-church-gold/20">
       <Navigation />
 
       {/* Header Section */}

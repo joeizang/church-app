@@ -74,7 +74,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Join Our Community?</h2>
           <p className="text-xl mb-8 text-purple-100">
-            We'd love to welcome you into our church family. Come as you are and discover the joy of fellowship.
+          If you're ready to dive deeper into God's Word and experience transformative worship, we invite you to connect with The Courtyard of Truth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-church-gold hover:bg-church-gold/90 text-church-purple font-semibold">

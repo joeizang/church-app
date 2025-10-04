@@ -26,7 +26,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information */}
-      <section className="py-16">
+      <section className="py-16 bg-gradient-to-br from-church-purple/20 via-gray-50 to-church-gold/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info Cards */}
@@ -112,7 +112,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gradient-to-br from-church-purple/30 via-gray-100 to-church-gold/30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-church-purple text-center mb-8">Find Us</h2>
           <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">

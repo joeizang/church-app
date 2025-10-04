@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export function HeroSection() {
   return (
-    <div className="relative bg-gradient-to-br from-church-purple/10 via-white to-church-gold/10 py-20">
+    <div className="relative bg-gradient-to-br from-church-purple/30 via-gray-100 to-church-gold/30 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-church-purple mb-6 text-balance">

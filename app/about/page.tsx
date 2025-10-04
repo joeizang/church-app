@@ -129,13 +129,13 @@ export default function AboutPage() {
               [
                 {
                   name: "Bro. Oluwafemi Bamgboye",
-                  title: "Resident Pastor",
+                  title: "Pioneer & Senior Pastor",
                   image: "/images/joseph-izang.jpg",
                   description: "Bro. Femi Bamgboye is the pioneer and leads the ministry."
                 },
                 {
                   name: "Sis. IfeOluwa Bamgboye",
-                  title: "Resident Pastor",
+                  title: "Pastor",
                   image: "/images/joseph-izang.jpg",
                   description: "Sis. Ife Bamgboye brings passion for worship and discipleship, leading our small groups and women's ministry with grace."
                 },
