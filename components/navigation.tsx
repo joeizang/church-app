@@ -3,11 +3,13 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -33,21 +35,28 @@ export function Navigation() {
             />
             <div className="flex flex-col">
               <span className="text-xl font-bold text-church-purple">Courtyard of Truth</span>
-              <span className="text-sm text-church-purple/70">Welcome Home</span>
+              <span className="text-sm text-church-purple/70"></span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-gray-700 hover:text-church-purple transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3 py-2 rounded-lg transition-all duration-200 font-medium ${
+                    isActive
+                      ? "text-church-purple border-2 border-church-gold bg-church-gold/10"
+                      : "text-gray-700 hover:text-church-purple hover:bg-gray-50"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Mobile menu button */}
@@ -62,16 +71,23 @@ export function Navigation() {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50 rounded-lg mb-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-3 py-2 text-gray-700 hover:text-church-purple transition-colors duration-200 font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`block px-3 py-2 rounded-lg transition-all duration-200 font-medium ${
+                      isActive
+                        ? "text-church-purple border-2 border-church-gold bg-church-gold/10"
+                        : "text-gray-700 hover:text-church-purple hover:bg-white/50"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         )}
