@@ -4,8 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,83 +15,114 @@ export function Navigation() {
     { href: "/", label: "Home" },
     { href: "/gallery", label: "Gallery" },
     { href: "/blog", label: "Blog" },
-    { href: "/sermons", label: "Sermons" },
+    { href: "https://courtyard.mixlr.com", label: "Sermons", external: true },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ]
 
   return (
-    <nav className="bg-white shadow-lg border-b-2 border-church-purple">
+    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-church-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+
+          {/* Logo only — name is already in the mark */}
+          <Link href="/" className="group shrink-0">
             <Image
               src="/images/church-logo.png"
-              alt="Courtyard of Truth Logo"
-              width={50}
-              height={50}
-              className="w-12 h-12"
+              alt="Courtyard of Truth"
+              width={64}
+              height={64}
+              className="w-14 h-14 transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-church-purple">Courtyard of Truth</span>
-              <span className="text-sm text-church-purple/70"></span>
-            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
-              const isActive = pathname === item.href
-              return (
+              const isActive = !item.external && pathname === item.href
+              const className = `relative px-4 py-2 font-cinzel text-xs tracking-[0.15em] uppercase transition-colors duration-200 ${
+                isActive
+                  ? "text-church-gold"
+                  : "text-foreground hover:text-church-gold"
+              }`
+              return item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                >
+                  {item.label}
+                </a>
+              ) : (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 rounded-lg transition-all duration-200 font-medium ${
-                    isActive
-                      ? "text-church-purple border-2 border-church-gold bg-church-gold/10"
-                      : "text-gray-700 hover:text-church-purple hover:bg-gray-50"
-                  }`}
+                  className={className}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-4 right-4 h-px bg-church-gold" />
+                  )}
+                </Link>
+              )
+            })}
+            <div className="ml-2 pl-2 border-l border-church-gold/20">
+              <ThemeToggle />
+            </div>
+          </div>
+
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-foreground hover:text-church-gold p-2 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden border-t border-church-gold/20 bg-background/98">
+          <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+            {navItems.map((item) => {
+              const isActive = !item.external && pathname === item.href
+              const className = `flex items-center px-4 py-3 font-cinzel text-xs tracking-[0.15em] uppercase transition-colors duration-200 rounded ${
+                isActive
+                  ? "text-church-gold border-l-2 border-church-gold bg-church-gold/5 pl-3"
+                  : "text-foreground hover:text-church-gold hover:bg-church-gold/5"
+              }`
+              return item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={className}
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               )
             })}
           </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="text-church-purple">
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50 rounded-lg mb-4">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`block px-3 py-2 rounded-lg transition-all duration-200 font-medium ${
-                      isActive
-                        ? "text-church-purple border-2 border-church-gold bg-church-gold/10"
-                        : "text-gray-700 hover:text-church-purple hover:bg-white/50"
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   )
 }
