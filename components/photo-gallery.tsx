@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -15,104 +14,23 @@ interface Photo {
 }
 
 const photos: Photo[] = [
-  {
-    id: 1,
-    src: "/church-worship-service-congregation-singing.jpg",
-    alt: "Sunday Worship Service",
-    category: "Worship",
-    title: "Sunday Morning Worship",
-  },
-  {
-    id: 2,
-    src: "/church-baptism-ceremony-water-celebration.jpg",
-    alt: "Baptism Ceremony",
-    category: "Sacraments",
-    title: "Baptism Celebration",
-  },
-  {
-    id: 3,
-    src: "/church-youth-group-activities-teenagers-fellowship.jpg",
-    alt: "Youth Group Activities",
-    category: "Youth",
-    title: "Youth Fellowship",
-  },
-  {
-    id: 4,
-    src: "/church-community-dinner-fellowship-hall-families.jpg",
-    alt: "Community Dinner",
-    category: "Fellowship",
-    title: "Community Dinner",
-  },
-  {
-    id: 5,
-    src: "/church-choir-singing-robes-music-ministry.jpg",
-    alt: "Church Choir",
-    category: "Music",
-    title: "Choir Ministry",
-  },
-  {
-    id: 6,
-    src: "/church-children-sunday-school-learning-bible-stori.jpg",
-    alt: "Children's Sunday School",
-    category: "Children",
-    title: "Children's Ministry",
-  },
-  {
-    id: 7,
-    src: "/church-christmas-service-nativity-celebration-cand.jpg",
-    alt: "Christmas Service",
-    category: "Special Events",
-    title: "Christmas Celebration",
-  },
-  {
-    id: 8,
-    src: "/church-easter-service-resurrection-celebration-flo.jpg",
-    alt: "Easter Service",
-    category: "Special Events",
-    title: "Easter Sunday",
-  },
-  {
-    id: 9,
-    src: "/church-bible-study-group-discussion-learning-toget.jpg",
-    alt: "Bible Study Group",
-    category: "Education",
-    title: "Wednesday Bible Study",
-  },
-  {
-    id: 10,
-    src: "/church-volunteer-outreach-community-service-helpin.jpg",
-    alt: "Community Outreach",
-    category: "Outreach",
-    title: "Community Service",
-  },
-  {
-    id: 11,
-    src: "/church-wedding-ceremony-bride-groom-celebration.jpg",
-    alt: "Wedding Ceremony",
-    category: "Sacraments",
-    title: "Wedding Blessing",
-  },
-  {
-    id: 12,
-    src: "/church-prayer-meeting-hands-together-spiritual-gat.jpg",
-    alt: "Prayer Meeting",
-    category: "Prayer",
-    title: "Prayer Circle",
-  },
+  { id: 1,  src: "/church-worship-service-congregation-singing.jpg",      alt: "Sunday Worship Service",    category: "Worship",        title: "Sunday Morning Worship" },
+  { id: 2,  src: "/church-baptism-ceremony-water-celebration.jpg",         alt: "Baptism Ceremony",          category: "Sacraments",     title: "Baptism Celebration" },
+  { id: 3,  src: "/church-youth-group-activities-teenagers-fellowship.jpg",alt: "Youth Group Activities",    category: "Youth",          title: "Youth Fellowship" },
+  { id: 4,  src: "/church-community-dinner-fellowship-hall-families.jpg",  alt: "Community Dinner",          category: "Fellowship",     title: "Community Dinner" },
+  { id: 5,  src: "/church-choir-singing-robes-music-ministry.jpg",         alt: "Church Choir",              category: "Music",          title: "Choir Ministry" },
+  { id: 6,  src: "/church-children-sunday-school-learning-bible-stori.jpg",alt: "Children's Sunday School",  category: "Children",       title: "Children's Ministry" },
+  { id: 7,  src: "/church-christmas-service-nativity-celebration-cand.jpg",alt: "Christmas Service",         category: "Special Events", title: "Christmas Celebration" },
+  { id: 8,  src: "/church-easter-service-resurrection-celebration-flo.jpg",alt: "Easter Service",            category: "Special Events", title: "Easter Sunday" },
+  { id: 9,  src: "/church-bible-study-group-discussion-learning-toget.jpg",alt: "Bible Study Group",         category: "Education",      title: "Wednesday Bible Study" },
+  { id: 10, src: "/church-volunteer-outreach-community-service-helpin.jpg",alt: "Community Outreach",        category: "Outreach",       title: "Community Service" },
+  { id: 11, src: "/church-wedding-ceremony-bride-groom-celebration.jpg",   alt: "Wedding Ceremony",          category: "Sacraments",     title: "Wedding Blessing" },
+  { id: 12, src: "/church-prayer-meeting-hands-together-spiritual-gat.jpg",alt: "Prayer Meeting",            category: "Prayer",         title: "Prayer Circle" },
 ]
 
 const categories = [
-  "All",
-  "Worship",
-  "Fellowship",
-  "Youth",
-  "Children",
-  "Music",
-  "Special Events",
-  "Sacraments",
-  "Education",
-  "Outreach",
-  "Prayer",
+  "All", "Worship", "Fellowship", "Youth", "Children", "Music",
+  "Special Events", "Sacraments", "Education", "Outreach", "Prayer",
 ]
 
 export function PhotoGallery() {
@@ -121,139 +39,149 @@ export function PhotoGallery() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const filteredPhotos =
-    selectedCategory === "All" ? photos : photos.filter((photo) => photo.category === selectedCategory)
+    selectedCategory === "All" ? photos : photos.filter((p) => p.category === selectedCategory)
 
   const openLightbox = (photo: Photo) => {
     setSelectedPhoto(photo)
     setCurrentIndex(filteredPhotos.findIndex((p) => p.id === photo.id))
   }
-
-  const closeLightbox = () => {
-    setSelectedPhoto(null)
-  }
-
+  const closeLightbox = () => setSelectedPhoto(null)
   const nextPhoto = () => {
-    const nextIndex = (currentIndex + 1) % filteredPhotos.length
-    setCurrentIndex(nextIndex)
-    setSelectedPhoto(filteredPhotos[nextIndex])
+    const next = (currentIndex + 1) % filteredPhotos.length
+    setCurrentIndex(next)
+    setSelectedPhoto(filteredPhotos[next])
   }
-
   const prevPhoto = () => {
-    const prevIndex = (currentIndex - 1 + filteredPhotos.length) % filteredPhotos.length
-    setCurrentIndex(prevIndex)
-    setSelectedPhoto(filteredPhotos[prevIndex])
+    const prev = (currentIndex - 1 + filteredPhotos.length) % filteredPhotos.length
+    setCurrentIndex(prev)
+    setSelectedPhoto(filteredPhotos[prev])
   }
 
   return (
     <div>
-      {/* Category Filter */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-church-purple mb-4">Browse by Category</h2>
+      {/* Category filters */}
+      <div className="mb-10">
+        <p className="eyebrow mb-4">Browse by Category</p>
         <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory(category)}
-              className={
-                selectedCategory === category
-                  ? "bg-church-purple hover:bg-church-purple/90 text-white"
-                  : "border-church-purple text-church-purple hover:bg-church-purple/10"
-              }
-            >
-              {category}
-            </Button>
-          ))}
+          {categories.map((cat) => {
+            const active = selectedCategory === cat
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`font-cinzel text-[0.65rem] tracking-[0.12em] uppercase px-4 py-2 rounded border transition-all duration-200 ${
+                  active
+                    ? "bg-church-gold text-background border-church-gold"
+                    : "bg-transparent text-foreground/80 border-church-gold/20 hover:border-church-gold/50 hover:text-church-gold"
+                }`}
+              >
+                {cat}
+              </button>
+            )
+          })}
         </div>
       </div>
 
-      {/* Photo Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* Photo grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredPhotos.map((photo) => (
-          <Card
+          <button
             key={photo.id}
-            className="overflow-hidden cursor-pointer hover:shadow-lg transition-shadow group"
             onClick={() => openLightbox(photo)}
+            className="group relative aspect-4/3 overflow-hidden rounded-lg border border-church-gold/10 hover:border-church-gold/50 transition-all duration-300 bg-card cursor-pointer"
           >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <Image
-                src={photo.src || "/placeholder.svg"}
-                alt={photo.alt}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+            <Image
+              src={photo.src || "/placeholder.svg"}
+              alt={photo.alt}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-background/0 group-hover:bg-background/50 transition-colors duration-300" />
+            <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h3 className="font-cinzel text-xs tracking-wider text-foreground">{photo.title}</h3>
+              <p className="text-church-gold text-[0.65rem] font-cinzel tracking-widest uppercase mt-0.5">
+                {photo.category}
+              </p>
             </div>
-            <div className="p-4">
-              <h3 className="font-semibold text-church-purple mb-1">{photo.title}</h3>
-              <p className="text-sm text-church-gold">{photo.category}</p>
-            </div>
-          </Card>
+          </button>
         ))}
+      </div>
+
+      {/* Count */}
+      <div className="mt-8 text-center">
+        <p className="text-muted-foreground text-xs font-cinzel tracking-widest uppercase">
+          Showing {filteredPhotos.length} {filteredPhotos.length === 1 ? "photo" : "photos"}
+          {selectedCategory !== "All" && ` · ${selectedCategory}`}
+        </p>
       </div>
 
       {/* Lightbox */}
       {selectedPhoto && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-full">
-            {/* Close Button */}
+        <div
+          className="fixed inset-0 bg-background/95 backdrop-blur-md z-50 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          <div
+            className="relative max-w-4xl w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close */}
             <Button
               variant="ghost"
               size="sm"
               onClick={closeLightbox}
-              className="absolute top-4 right-4 z-10 bg-black/50 text-white hover:bg-black/70"
+              className="absolute -top-12 right-0 text-foreground/85 hover:text-church-gold hover:bg-transparent"
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
+              <span className="font-cinzel text-[0.65rem] tracking-widest uppercase ml-2">Close</span>
             </Button>
 
-            {/* Navigation Buttons */}
+            {/* Image */}
+            <div className="relative rounded-lg overflow-hidden border border-church-gold/20">
+              <Image
+                src={selectedPhoto.src || "/placeholder.svg"}
+                alt={selectedPhoto.alt}
+                width={900}
+                height={675}
+                className="w-full max-h-[75vh] object-contain bg-card"
+              />
+              {/* Caption */}
+              <div className="absolute bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-t border-church-gold/15 px-6 py-4 flex items-center justify-between">
+                <div>
+                  <h3 className="font-cinzel text-sm text-foreground">{selectedPhoto.title}</h3>
+                  <p className="text-church-gold text-xs font-cinzel tracking-widest uppercase mt-0.5">
+                    {selectedPhoto.category}
+                  </p>
+                </div>
+                <p className="text-muted-foreground text-xs font-cinzel tracking-widest">
+                  {currentIndex + 1} / {filteredPhotos.length}
+                </p>
+              </div>
+            </div>
+
+            {/* Prev/Next */}
             {filteredPhotos.length > 1 && (
               <>
                 <Button
                   variant="ghost"
-                  size="sm"
                   onClick={prevPhoto}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 text-foreground/85 hover:text-church-gold hover:bg-transparent"
                 >
-                  <ChevronLeft className="h-6 w-6" />
+                  <ChevronLeft className="h-7 w-7" />
                 </Button>
                 <Button
                   variant="ghost"
-                  size="sm"
                   onClick={nextPhoto}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 text-foreground/85 hover:text-church-gold hover:bg-transparent"
                 >
-                  <ChevronRight className="h-6 w-6" />
+                  <ChevronRight className="h-7 w-7" />
                 </Button>
               </>
             )}
-
-            {/* Image */}
-            <div className="relative">
-              <Image
-                src={selectedPhoto.src || "/placeholder.svg"}
-                alt={selectedPhoto.alt}
-                width={800}
-                height={600}
-                className="max-w-full max-h-[80vh] object-contain"
-              />
-
-              {/* Image Info */}
-              <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4">
-                <h3 className="text-xl font-semibold mb-1">{selectedPhoto.title}</h3>
-                <p className="text-church-gold">{selectedPhoto.category}</p>
-              </div>
-            </div>
           </div>
         </div>
       )}
-
-      {/* Results Count */}
-      <div className="mt-8 text-center text-gray-600">
-        Showing {filteredPhotos.length} {filteredPhotos.length === 1 ? "photo" : "photos"}
-        {selectedCategory !== "All" && ` in ${selectedCategory}`}
-      </div>
     </div>
   )
 }

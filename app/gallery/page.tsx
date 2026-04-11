@@ -10,21 +10,28 @@ export const metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Header Section */}
-      <section className="bg-church-purple text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Photo Gallery</h1>
-          <p className="text-xl text-purple-100 max-w-2xl mx-auto">
+      {/* Header */}
+      <section className="relative py-20 overflow-hidden section-purple bg-sacred-grid">
+        <div className="absolute inset-0 pointer-events-none section-vignette" />
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
+          <p className="eyebrow mb-4">Our Moments</p>
+          <h1 className="font-cinzel text-4xl md:text-5xl text-foreground mb-6">Photo Gallery</h1>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-px w-12 bg-linear-to-r from-transparent to-church-gold/50" />
+            <span className="text-church-gold text-xs">✦</span>
+            <div className="h-px w-12 bg-linear-to-l from-transparent to-church-gold/50" />
+          </div>
+          <p className="text-foreground/85 text-lg max-w-xl mx-auto leading-relaxed">
             Capturing the beautiful moments of our church community and the joy we share together in faith.
           </p>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="py-16">
+      {/* Gallery */}
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PhotoGallery />
         </div>
