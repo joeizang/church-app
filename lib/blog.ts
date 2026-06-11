@@ -24,7 +24,7 @@ export function getAllBlogSlugs(): string[] {
   try {
     const fileNames = fs.readdirSync(postsDirectory)
     return fileNames.filter((name) => name.endsWith(".md")).map((name) => name.replace(/\.md$/, ""))
-  } catch (error) {
+  } catch {
     return []
   }
 }
@@ -45,7 +45,7 @@ export function getBlogPost(slug: string): BlogPost | null {
       category: data.category || "General",
       readTime: data.readTime || "5 min read",
     }
-  } catch (error) {
+  } catch {
     return null
   }
 }

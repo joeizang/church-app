@@ -1,5 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
+import React from 'react'
+
+import { SocialLinks } from "@/components/social-links"
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -34,6 +37,7 @@ export function Footer() {
               A vibrant assembly of believers devoted to exploring the unblemished truth of God&rsquo;s
               Word — illuminating lives, families, and communities.
             </p>
+            <SocialLinks className="mb-6" />
             <p className="text-muted-foreground text-xs tracking-widest uppercase">
               &copy; {year} Courtyard of Truth. All rights reserved.
             </p>

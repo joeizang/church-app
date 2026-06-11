@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/navigation"
 import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
+import { SocialLinks } from "@/components/social-links"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 
 export const metadata = {
@@ -92,6 +93,12 @@ export default function ContactPage() {
                     </div>
                   </div>
                 ))}
+                <div className="bg-background border border-church-gold/25 rounded-lg p-5">
+                  <h3 className="font-cinzel text-xs tracking-widest uppercase text-church-gold mb-4">
+                    Follow Us
+                  </h3>
+                  <SocialLinks showLabels />
+                </div>
               </div>
             </div>
 

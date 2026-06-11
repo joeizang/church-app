@@ -97,7 +97,7 @@ export function SermonPost({ sermon }: SermonPostProps) {
             <div>
               <p className="text-sm text-gray-500 mb-1">Preached by</p>
               <p className="font-semibold text-church-purple">{sermon.speaker}</p>
-              {sermon.series && <p className="text-sm text-church-gold">Part of the "{sermon.series}" series</p>}
+              {sermon.series && <p className="text-sm text-church-gold">Part of the &quot;{sermon.series}&quot; series</p>}
             </div>
             <Link href="/sermons">
               <Button

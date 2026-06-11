@@ -47,7 +47,7 @@ export function HeroSection() {
 
         {/* Tagline */}
         <p className="text-xl md:text-2xl text-foreground/85 italic font-sans leading-relaxed max-w-2xl mx-auto mb-12 animate-fade-up animate-delay-300">
-          We exist to expose believers to the unblemished truth of God's Word in a clear, practical and life-impacting way.
+          We exist to expose believers to the unblemished truth of God&apos;s Word in a clear, practical and life-impacting way.
         </p>
 
         {/* CTAs */}

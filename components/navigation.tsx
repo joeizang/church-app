@@ -13,7 +13,7 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/gallery", label: "Gallery" },
+    // { href: "/gallery", label: "Gallery" },
     { href: "/blog", label: "Blog" },
     { href: "https://courtyard.mixlr.com", label: "Sermons", external: true },
     { href: "/about", label: "About" },

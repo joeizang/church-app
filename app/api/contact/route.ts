@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
     try {
       const fileContent = await readFile(dataPath, 'utf-8')
       existingData = JSON.parse(fileContent)
-    } catch (error) {
+    } catch {
       // If file doesn't exist or is invalid, create new structure
       existingData = {
         submissions: [],
