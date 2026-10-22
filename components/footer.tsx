@@ -71,8 +71,7 @@ export function Footer() {
             <ul className="space-y-3 text-base">
               {[
                 { day: "Sunday Worship", time: "9:00 AM" },
-                { day: "Tuesday Bible Study", time: "5:30 PM" },
-                { day: "Friday Hour of Prayer", time: "5:30 PM" },
+                { day: "Wednesday Midweek Service", time: "5:00 – 6:30 PM" },
               ].map(({ day, time }) => (
                 <li key={day} className="flex justify-between gap-4">
                   <span className="text-foreground/80">{day}</span>

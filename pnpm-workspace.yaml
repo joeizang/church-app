@@ -1,2 +1,8 @@
+autoInstallPeers: false
+
 allowBuilds:
   sharp: true
+  unrs-resolver: false
+
+overrides:
+  postcss: 8.5.15
