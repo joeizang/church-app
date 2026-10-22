@@ -26,15 +26,16 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               {children}
             </blockquote>
           ),
-          code: ({ inline, className, children, ...props }) => {
+          // react-markdown no longer passes `inline`; fenced blocks are identified by their language class
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars -- keep `node` off the DOM element
+          code: ({ node: _node, className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || "")
-            return !inline && match ? (
+            return match ? (
               <SyntaxHighlighter
                 style={tomorrow}
                 language={match[1]}
                 PreTag="div"
                 className="rounded-lg mb-4"
-                {...props}
               >
                 {String(children).replace(/\n$/, "")}
               </SyntaxHighlighter>

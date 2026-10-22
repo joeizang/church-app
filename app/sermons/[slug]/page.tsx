@@ -5,9 +5,9 @@ import { getSermon, getAllSermonSlugs } from "@/lib/sermons"
 import { notFound } from "next/navigation"
 
 interface SermonPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: SermonPageProps) {
-  const sermon = getSermon(params.slug)
+  const { slug } = await params
+  const sermon = getSermon(slug)
 
   if (!sermon) {
     return {
@@ -32,8 +33,9 @@ export async function generateMetadata({ params }: SermonPageProps) {
   }
 }
 
-export default function SermonPage({ params }: SermonPageProps) {
-  const sermon = getSermon(params.slug)
+export default async function SermonPage({ params }: SermonPageProps) {
+  const { slug } = await params
+  const sermon = getSermon(slug)
 
   if (!sermon) {
     notFound()
