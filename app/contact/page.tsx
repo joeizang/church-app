@@ -38,8 +38,7 @@ const contactCards = [
     border: "border-church-gold/25",
     times: [
       { label: "Sunday Worship",      value: "9:00 AM" },
-      { label: "Tuesday Bible Study", value: "5:30 PM" },
-      { label: "Prayer Hour",         value: "5:30 PM" },
+      { label: "Wednesday Midweek Service", value: "5:00 – 6:30 PM" },
     ],
   },
 ]
